@@ -3,7 +3,9 @@
         <div class="col-md-6">
             <h3>Daftar Manusia</h3>
             <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
+                <?php foreach( $penduduk as $p ): ?>
+                    <li class="list-group-item"><?= $p['nama']; ?></li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
