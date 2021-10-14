@@ -15,6 +15,11 @@ class Penduduk_model extends CI_Model {
     
         $this->db->insert('mahasiswa', $data);
     }
+
+    public function deleteDataPenduduk($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('mahasiswa');
+    }
 }
 
 ?>

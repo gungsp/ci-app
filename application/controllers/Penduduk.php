@@ -15,7 +15,7 @@ class Penduduk extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function addPenduduk(){
+    public function addPenduduk() {
         $data['title'] = 'Tambah data penduduk';
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -28,8 +28,15 @@ class Penduduk extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $this->Penduduk_model->addDataPenduduk();
+            $this->session->set_flashdata('flash', 'ditambahkan!');
             redirect('penduduk/index');
         }
+    }
+
+    public function deletePenduduk($id) {
+        $this->Penduduk_model->deleteDataPenduduk($id);
+        $this->session->set_flashdata('flash', 'dihapus!');
+        redirect('penduduk/index');
     }
 }
 
