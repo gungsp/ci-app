@@ -27,7 +27,8 @@ class Penduduk extends CI_Controller {
             $this->load->view('penduduk/add');
             $this->load->view('templates/footer');
         } else {
-            echo "mek";
+            $this->Penduduk_model->addDataPenduduk();
+            redirect('penduduk/index');
         }
     }
 }
