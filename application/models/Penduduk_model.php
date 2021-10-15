@@ -35,6 +35,13 @@ class Penduduk_model extends CI_Model {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('mahasiswa', $data);
     }
+
+    public function cariDataPenduduk() {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('nama', $keyword);
+        $this->db->or_like('jurusan', $keyword);
+        return $this->db->get('mahasiswa')->result_array();
+    }
 }
 
 ?>

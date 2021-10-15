@@ -6,6 +6,18 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-6">
+            <form action="" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Cari penduduk.." name="keyword">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6">
             <h3>Daftar Manusia</h3>
             <?php if( $this->session->flashdata('flash')) : ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">

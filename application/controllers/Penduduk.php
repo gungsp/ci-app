@@ -10,6 +10,9 @@ class Penduduk extends CI_Controller {
     public function index() {
         $data['title'] = 'Daftar Penduduk';
         $data['penduduk'] = $this->Penduduk_model->getAllPenduduk();
+        if( $this->input->post('keyword') ) {
+            $data['penduduk'] = $this->Penduduk_model->cariDataPenduduk();
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('penduduk/index', $data);
         $this->load->view('templates/footer');
