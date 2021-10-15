@@ -38,6 +38,14 @@ class Penduduk extends CI_Controller {
         $this->session->set_flashdata('flash', 'dihapus!');
         redirect('penduduk/index');
     }
+
+    public function detail($id) {
+        $data['title'] = "Detail Penduduk";
+        $data['penduduk'] = $this->Penduduk_model->getPendudukById($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('penduduk/detail', $data);
+        $this->load->view('templates/footer');
+    }
 }
 
  ?>
