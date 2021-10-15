@@ -20,6 +20,7 @@
                     <li class="list-group-item">
                         <?= $p['nama']; ?>
                         <a href="<?= base_url(); ?>penduduk/deletePenduduk/<?= $p['id']; ?>" class="badge badge-danger float-right">hapus</a>
+                        <a href="<?= base_url(); ?>penduduk/editPenduduk/<?= $p['id']; ?>" class="badge badge-warning float-right m-right">ubah</a>
                         <a href="<?= base_url(); ?>penduduk/detail/<?= $p['id']; ?>" class="badge badge-primary float-right m-right">detail</a>
                     </li>
                 <?php endforeach; ?>

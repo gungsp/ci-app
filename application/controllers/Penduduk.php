@@ -46,6 +46,26 @@ class Penduduk extends CI_Controller {
         $this->load->view('penduduk/detail', $data);
         $this->load->view('templates/footer');
     }
+
+    public function editPenduduk($id) {
+        $data['title'] = 'Ubah Data Penduduk';
+        $data['penduduk'] = $this->Penduduk_model->getPendudukById($id);
+        $data['jurusan'] = ['Teknik Informatika', 'Teknik Elektryk', 'Pengangguran', 'Teknik Nuklir', 'Dokter', 'Medic'];
+
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nim', 'Social credit', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
+        if( $this->form_validation->run() == FALSE){
+            $this->load->view('templates/header', $data);
+            $this->load->view('penduduk/edit', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Penduduk_model->editDataPenduduk($id);
+            $this->session->set_flashdata('flash', 'diubah!');
+            redirect('penduduk/index');
+        }
+    }
 }
 
  ?>

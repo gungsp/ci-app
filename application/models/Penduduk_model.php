@@ -24,6 +24,17 @@ class Penduduk_model extends CI_Model {
     public function getPendudukById($id) {
         return $this->db->get_where('mahasiswa', ['id'=> $id])->row_array();
     }
+
+    public function editDataPenduduk($id) {
+        $data = array(
+            'nama' => $this->input->post('nama', true),
+            'nim' => $this->input->post('nim', true),
+            'email' => $this->input->post('email', true),
+            'jurusan' => $this->input->post('jurusan', true)
+        );
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('mahasiswa', $data);
+    }
 }
 
 ?>
