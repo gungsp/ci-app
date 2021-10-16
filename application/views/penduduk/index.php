@@ -19,6 +19,11 @@
     <div class="row mt-2">
         <div class="col-md-6">
             <h3>Daftar Manusia</h3>
+            <?php if( empty($penduduk) ) : ?>
+                <div class="alert alert-danger" role="alert">
+                Data mahasiswa tidak ditemukan!
+                </div>
+            <?php endif; ?>
             <?php if( $this->session->flashdata('flash')) : ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Data <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>
