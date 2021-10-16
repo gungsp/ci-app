@@ -12,10 +12,10 @@
                 <?php 
                 foreach( $warga as $w) : ?>
                     <tbody>
-                        <th><?= ++$start; ?></th>
+                        <th class="text-center"><?= ++$start; ?></th>
                         <th><?= $w['name']; ?></th>
                         <th><?= $w['address']; ?></th>
-                        <th><a href="" class="badge badge-primary m-right">detail</a><a href="" class="badge badge-warning m-right">ubah</a><a href="" class="badge badge-danger m-right">hapus</a></th>
+                        <th  class="text-center"><a href="" class="badge badge-primary m-right">detail</a><a href="" class="badge badge-warning m-right">ubah</a><a href="" class="badge badge-danger m-right">hapus</a></th>
                     </tbody>
                 <?php endforeach; ?>
             </table>
