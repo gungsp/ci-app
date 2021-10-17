@@ -11,46 +11,29 @@ class Warga extends CI_Controller {
         // PAGINATION
         $this->load->library('pagination');
 
+        // Ambil data keyword
+        if( $this->input->post('submit') ) {
+            $data['keyword'] = $this->input->post('keyword');
+            $this->session->set_userdata('keyword', $data['keyword']);
+
+        } else {
+            $data['keyword'] = $data['keyword'] = $this->session->userdata('keyword');;
+        }
         // CONFIG
-        
-        $config['base_url'] = 'http://localhost/ci-app/warga/index/';
-        $config['total_rows'] = $this->Warga_model->countAllWarga();
-        $config['per_page'] = 12;
+        $this->db->like('name', $data['keyword']); 
+        $this->db->from('people');
+        $config['total_rows'] = $this->db->count_all_results();
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 8;
 
-        // ENCLOSING
-        $config['full_tag_open'] = '<nav><ul class="pagination justify-content-center">';
-        $config['full_tag_close'] = '</nav></ul>';
 
-        $config['first_link'] = 'First';
-        $config['first_tag_open'] = '<li class="page-item">';
-        $congig['first_tag_close'] = '</li>';
-
-        $config['last_link'] = 'Last';
-        $config['last_tag_open'] = '<li class="page-item">';
-        $congig['last_tag_close'] = '</li>';
-
-        $config['next_link'] = '&raquo';
-        $config['next_tag_open'] = '<li class="page-item">';
-        $congig['next_tag_close'] = '</li>';
-
-        $config['prev_link'] = '&laquo';
-        $config['prev_tag_open'] = '<li class="page-item">';
-        $congig['prev_tag_close'] = '</li>';
-
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-
-        $config['num_tag_open'] = '<li class="page-item">';
-        $config['num_tag_close'] = '</li>';
-
-        $config['attributes'] = array('class' => 'page-link');
 
         
         $this->pagination->initialize($config);
 
         $data['start'] = $this->uri->segment(3);
         $data['title'] = 'Data Warga';
-        $data['warga'] = $this->Warga_model->getWarga($config['per_page'], $data['start']);
+        $data['warga'] = $this->Warga_model->getWarga($config['per_page'], $data['start'], $data['keyword']);
         
         $this->load->view('templates/header', $data);
         $this->load->view('warga/index', $data);
